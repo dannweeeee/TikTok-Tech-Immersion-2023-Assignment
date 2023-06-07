@@ -12,3 +12,13 @@ Run the following command in the same directory as `docker-compose.yml` to initi
 ```bash
 docker compose up -d
 ```
+
+### To Send Messages
+```bash
+curl -X POST 'localhost:8080/api/send?chat=a:b&sender=a&text=hello'
+```
+
+### To Retrieve all Messages
+```bash
+curl 'localhost:8080/api/pull?chat=a:b&reverse=false'
+```
