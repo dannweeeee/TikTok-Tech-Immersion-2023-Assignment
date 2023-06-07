@@ -14,11 +14,13 @@ docker compose up -d
 ```
 
 ### To Send Messages
+Send a `POST` request to `localhost:808-/api/send`
 ```bash
 curl -X POST 'localhost:8080/api/send?chat=a:b&sender=a&text=hello'
 ```
 
 ### To Retrieve Messages
+Send a `GET` request to `localhost:8080/api/pull`
 ```bash
 curl 'localhost:8080/api/pull?chat=a:b&reverse=false'
 ```
