@@ -18,7 +18,7 @@ docker compose up -d
 curl -X POST 'localhost:8080/api/send?chat=a:b&sender=a&text=hello'
 ```
 
-### To Retrieve all Messages
+### To Retrieve Messages
 ```bash
 curl 'localhost:8080/api/pull?chat=a:b&reverse=false'
 ```
