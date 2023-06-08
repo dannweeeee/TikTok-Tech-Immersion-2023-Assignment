@@ -10,9 +10,10 @@ The system contains:
 * RPC server
 * Redis (Data Storage)
 <br>
-![whiteboard_exported_image](https://github.com/dannweeeee/TikTok-Tech-Immersion-2023-Assignment/assets/42776950/bbc0dd06-5fe7-4b94-bc18-61c1c8f8f60e)
+![whiteboard_exported_image](https://github.com/dannweeeee/TikTok-Tech-Immersion-2023-Assignment/assets/42776950/5fb1f573-85ba-4ae0-b1bf-7fe105dc3c92)
 
-## Additional Features:
+
+### Additional Feature
 * Created a multi-module workspace to simplify dependency management controlled by a `go.work` file in the root directory.
 
 ## Introduction
