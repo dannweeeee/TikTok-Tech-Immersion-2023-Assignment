@@ -10,7 +10,7 @@ Code base is based upon the [demo template](https://github.com/TikTokTechImmersi
 ### Setup Instructions
 Run the following command in the same directory as `docker-compose.yml`:
 ```bash
-docker compose up -d
+docker compose up
 ```
 
 ### To Send Messages
