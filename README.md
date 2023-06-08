@@ -5,7 +5,7 @@
 This is a submission of the TikTok Tech Immersion 2023 Backend Assignment. <br>
 Code base is based upon the [demo template](https://github.com/TikTokTechImmersion/assignment_demo_2023). <br>
 <br>
-NOTE: This assignment is only focused on the development of the backend side of the system, with any frontend features.
+NOTE: This assignment is only focused on the development of the backend side of the system, without any frontend features.
 
 ### Task
 Design and Develop an Instant Messaging System implementing a set of specific APIs using Golang. 
