@@ -4,8 +4,7 @@
 ### Assignment Task
 Design and Develop an Instant Messaging System implementing a set of specific APIs using Golang. 
 
-### Architecture
-The system contains:
+### System Architecture
 * HTTP server
 * RPC server
 * Redis (Data Storage)
