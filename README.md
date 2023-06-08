@@ -3,7 +3,7 @@
 
 Task: Design and develop an Instant Messaging system implementing a set of specific APIs using Golang. 
 
-## Introduction
+### Introduction
 This is a submission of the TikTok Tech Immersion 2023 Backend Assignment. <br>
 Code base is based upon the [demo template](https://github.com/TikTokTechImmersion/assignment_demo_2023).
 
