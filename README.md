@@ -9,9 +9,6 @@ The system contains:
 * HTTP server
 * RPC server
 * Redis (Data Storage)
-<br>
-![whiteboard_exported_image](https://github.com/dannweeeee/TikTok-Tech-Immersion-2023-Assignment/assets/42776950/5fb1f573-85ba-4ae0-b1bf-7fe105dc3c92)
-
 
 ### Additional Feature
 * Created a multi-module workspace to simplify dependency management controlled by a `go.work` file in the root directory.
@@ -30,5 +27,5 @@ NOTE: This assignment is only focused on the development of the backend side of 
 ## Setup Instructions
 Run the following command in the same directory as `docker-compose.yml` to initialise docker containers:
 ```bash
-docker compose up
+docker compose up -d
 ```
