@@ -1,20 +1,17 @@
 version: '3.9'
-
 services:
   rpc-server:
     build: rpc-server
-    restart: always
     ports:
       - "8888:8888"
     environment:
       - SERVICE_NAME=rpc-server
       - SERVICE_TAGS=rpc
     depends_on:
-      - db
       - etcd
+      - redis
   http-server:
     build: http-server
-    restart: always
     ports:
       - "8080:8080"
     environment:
@@ -35,25 +32,9 @@ services:
       ]
     ports:
       - "2379:2379"
-  db:
-    platform: linux/x86_64
-    image: mysql:5.7
-    restart: always
-    container_name: DockerDB
-    build:
-      context: .
+  redis:
+    image: 'bitnami/redis:latest'
     environment:
-      MYSQL_DATABASE: "db"
-      MYSQL_USER: "user"
-      MYSQL_PASSWORD: "secret"
-      MYSQL_ROOT_PASSWORD: "secret"
+      - ALLOW_EMPTY_PASSWORD=yes
     ports:
-      # <Port exposed> : < MySQL Port running inside container>
-      - "3306:3306"
-    volumes:
-      # Where our data will be persisted
-      - ./db:/var/lib/mysql
-
-# Names our volume
-volumes:
-  my-db:
+      - "6379:6379"

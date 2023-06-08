@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"log"
-	"strconv"
 	"time"
 
 	"github.com/TikTokTechImmersion/assignment_demo_2023/http-server/kitex_gen/rpc"
@@ -11,7 +10,6 @@ import (
 	"github.com/TikTokTechImmersion/assignment_demo_2023/http-server/proto_gen/api"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/cloudwego/kitex/client"
@@ -67,39 +65,18 @@ func sendMessage(ctx context.Context, c *app.RequestContext) {
 }
 
 func pullMessage(ctx context.Context, c *app.RequestContext) {
-	var cursor int
-	var cursorErr error
-	if c.Query("cursor") == "" {
-		cursor = 0
-	} else {
-		cursor, cursorErr = strconv.Atoi(c.Query("cursor"))
-		if cursorErr != nil {
-			c.String(consts.StatusBadRequest,
-				"Failed to parse cursor param request body: %v", cursorErr)
-			return
-		}
+	var req api.PullRequest
+	err := c.Bind(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, "Failed to parse request body: %v", err)
+		return
 	}
-
-	var limit int
-	var limitErr error
-	if c.Query("limit") == "" {
-		limit = 10
-	} else {
-		limit, limitErr = strconv.Atoi(c.Query("limit"))
-		if limitErr != nil {
-			c.String(consts.StatusBadRequest,
-				"Failed to parse limit param in request body: %v", limitErr)
-			return
-		}
-	}
-
-	reverse := c.Query("reverse") == "true"
 
 	resp, err := cli.Pull(ctx, &rpc.PullRequest{
-		Chat:    c.Query("chat"),
-		Cursor:  int64(cursor),
-		Limit:   int32(limit),
-		Reverse: &reverse,
+		Chat:    req.Chat,
+		Cursor:  req.Cursor,
+		Limit:   req.Limit,
+		Reverse: &req.Reverse,
 	})
 	if err != nil {
 		c.String(consts.StatusInternalServerError, err.Error())
@@ -110,7 +87,6 @@ func pullMessage(ctx context.Context, c *app.RequestContext) {
 	}
 	messages := make([]*api.Message, 0, len(resp.Messages))
 	for _, msg := range resp.Messages {
-		hlog.Debug(msg)
 		messages = append(messages, &api.Message{
 			Chat:     msg.Chat,
 			Text:     msg.Text,
